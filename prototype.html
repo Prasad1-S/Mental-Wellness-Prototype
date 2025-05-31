@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen font-sans p-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Mood Check-In -->
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-lg font-semibold mb-3">Daily Mood Check-In</h2>
+      <div class="space-x-2">
+        <button onclick="setMood('Happy')" class="text-2xl">😊 Happy</button>
+        <button onclick="setMood('Neutral')" class="text-2xl">😐 Neutral</button>
+        <button onclick="setMood('Sad')" class="text-2xl">😢 Sad</button>
+      </div>
+    </div>
+
+    <!-- Journal Entry -->
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-lg font-semibold mb-3">Journal</h2>
+      <textarea id="journal" class="w-full p-2 border border-gray-300 rounded-md" rows="5" placeholder="Write about your day..."></textarea>
+      <button onclick="submitJournal()" class="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md">Submit Entry</button>
+    </div>
+
+    <!-- Model Selection -->
+    <div class="bg-white rounded-xl shadow p-6 md:col-span-2">
+      <h2 class="text-lg font-semibold mb-3">Choose Your Support Mode</h2>
+      <div class="space-x-2">
+        <button onclick="selectMode('chatbot')" class="px-4 py-2 border rounded-md">Therauepatic Chatbot</button>
+        <button onclick="selectMode('tasks')" class="px-4 py-2 border rounded-md">Tasks Based</button>
+      </div>
+    </div>
+
+    <!-- Alert Section -->
+    <div class="bg-white rounded-xl shadow p-6 md:col-span-2">
+      <h2 class="text-lg font-semibold mb-2">System Alerts</h2>
+      <p class="text-red-600 font-bold mb-3">Warning: Your recent patterns suggest a possible emotional crisis.</p>
+      <button onclick="findTherapists()" class="bg-red-600 text-white px-4 py-2 rounded-md">Find Nearby Therapists</button>
+    </div>
+  </div>
+
+  <script>
+    let selectedMood = '';
+
+    function setMood(mood) {
+      selectedMood = mood;
+      alert(`Mood set to: ${mood}`);
+    }
+
+    function submitJournal() {
+      const journalText = document.getElementById('journal').value;
+      if (journalText.trim() === '') {
+        alert('Please write something in your journal.');
+        return;
+      }
+      alert(`Journal submitted with mood: ${selectedMood}\nEntry: ${journalText}`);
+    }
+
+    function selectMode(mode) {
+      alert(`Support mode selected: ${mode}`);
+    }
+
+    function findTherapists() {
+      alert('Redirecting to therapist suggestions near you...');
+    }
+  </script>
+</body>
+</html>
